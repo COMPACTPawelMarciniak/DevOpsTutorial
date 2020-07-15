@@ -16,14 +16,15 @@ variables:
 
 steps:
 - task: NuGetToolInstaller@1
+inputs:
+    command: test
+    projects: '**/*Test/*.csproj'
 # - script: dotnet build --configuration $(buildCongfiguration)
 #   diplayName: 'dotnet build $(buildConfiguration)'
 
-steps:
-  -task: DotNetCoreCLI@2
-  inputs:
-    command: test
-    projects: '**/*Test/*.csproj'
+# steps:
+#   -task: DotNetCoreCLI@2
+  
 
 - task: NuGetCommand@2
   inputs:
