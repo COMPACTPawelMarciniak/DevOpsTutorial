@@ -42,7 +42,7 @@ namespace DevOpsAPI.Controllers
         [Route("api/weather")]
         public string GetTest()
         {
-            return "Wartość testowa";
+            return "Paweł";
         }
     }
 }
