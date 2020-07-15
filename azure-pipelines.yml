@@ -19,6 +19,12 @@ steps:
 # - script: dotnet build --configuration $(buildCongfiguration)
 #   diplayName: 'dotnet build $(buildConfiguration)'
 
+steps:
+  -task: DotNetCoreCLI@2
+  inputs:
+    command: test
+    projects: '**/*Test/*.csproj'
+
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
