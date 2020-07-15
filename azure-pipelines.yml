@@ -16,15 +16,6 @@ variables:
 
 steps:
 - task: NuGetToolInstaller@1
-inputs:
-    command: test
-    projects: '**/*Test/*.csproj'
-# - script: dotnet build --configuration $(buildCongfiguration)
-#   diplayName: 'dotnet build $(buildConfiguration)'
-
-# steps:
-#   -task: DotNetCoreCLI@2
-  
 
 - task: NuGetCommand@2
   inputs:
@@ -36,6 +27,12 @@ inputs:
     msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
+    - task: DotNetCoreCLI@2
+  inputs:
+    command: test
+    projects: '**/*Tests/*.csproj'
+    arguments: '--configuration $(buildConfiguration)'
 
 - task: VSTest@2
   inputs:
